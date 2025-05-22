@@ -824,23 +824,7 @@ services:
     restart: always
     volumes:
       - ./volumes/unstructured:/app/data
-#No estaba definido en la plantilla de easypanel, vamos a ver: 
-plugin-daemon:
-  image: langgenius/dify-plugin-daemon:0.11.1
-  restart: always
-  ports:
-    - "5003:5003"
-  environment:
-    - PLUGIN_DAEMON_HOST=0.0.0.0
-    - PLUGIN_DAEMON_PORT=5003
-    - PLUGIN_DAEMON_API_KEY=dify-plugin-daemon
-  networks:
-    - dify
-  healthcheck:
-    test: ["CMD", "curl", "-f", "http://localhost:5003/health"]
-    interval: 30s
-    timeout: 10s
-    retries: 3
+
 networks:
   # create a network between sandbox, api and ssrf_proxy, and can not access outside.
   ssrf_proxy_network:
